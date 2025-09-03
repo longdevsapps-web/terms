@@ -1,113 +1,443 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Terms of Service · Calify</title>
-  <meta name="description" content="Terms of Service for the Calify fitness mobile application." />
+  <title>Terms of Service – Calify</title>
+  <meta name="description" content="Terms of Service for Calify" />
+
   <style>
+    /* ======= Theme tokens (match Privacy Policy) ======= */
     :root{
-      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --border:#e2e8f0; --card:#ffffff; --link:#2563eb;
+      --accent: #7C3AED;            /* app accent */
+      --bg: #0f1114;                 /* dark bg */
+      --bg-elev: #0b0d10;            /* deeper backdrop */
+      --bg-card: #15181d;            /* dark card */
+      --text: #e9eef5;
+      --muted: #a7b1bf;
+      --border: #242a32;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-lg: 20px;
+      --radius-md: 16px;
     }
-    @media (prefers-color-scheme: dark){
+    @media (prefers-color-scheme: light) {
       :root{
-        --bg:#0b0f14; --fg:#e5e7eb; --muted:#94a3b8; --border:#1f2937; --card:#0f141b; --link:#60a5fa;
+        --bg: #f7f7f9;
+        --bg-elev: #f0f2f6;
+        --bg-card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: rgba(0,0,0,.08);
+        --shadow: 0 10px 30px rgba(0,0,0,.08);
       }
     }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";}
-    .wrap{max-width:900px;margin:0 auto;padding:32px 20px;}
-    header{margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:16px;}
-    h1{font-size:2rem;line-height:1.2;margin:0 0 6px 0;}
-    .meta{color:var(--muted);font-size:.95rem;}
-    h2{margin:28px 0 8px 0;font-size:1.25rem;line-height:1.3}
-    p{margin:10px 0;}
-    ul{margin:10px 0 10px 22px}
-    a{color:var(--link);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
-    .note{font-size:.95rem;color:var(--muted)}
-    footer{margin-top:36px;color:var(--muted);font-size:.95rem}
+
+    /* ======= Global ======= */
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+            Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent), transparent),
+        radial-gradient(1200px 700px at 120% -20%, color-mix(in oklab, var(--accent) 10%, transparent), transparent),
+        var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .wrap{
+      max-width: 860px;
+      margin: 48px auto 64px;
+      padding: 0 20px 96px; /* extra bottom padding */
+    }
+
+    /* ======= Header / Hero ======= */
+    .hero{
+      position: relative;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg,
+          color-mix(in oklab, var(--accent) 8%, var(--bg-card)) 0%,
+          var(--bg-card) 60%),
+        var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg,
+          color-mix(in oklab, var(--accent) 28%, transparent),
+          transparent 30% 70%,
+          color-mix(in oklab, var(--accent) 18%, transparent));
+      opacity:.08;
+      z-index: -1;
+    }
+    .hero-top{
+      display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:wrap;
+    }
+    h1{
+      margin: 0;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Badges & meta */
+    .meta{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px; border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 16%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 36%, transparent);
+      color: color-mix(in oklab, var(--accent) 90%, white);
+      font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing:.5px;
+    }
+
+    /* ======= Quick nav ======= */
+    .toc{
+      margin-top: 16px;
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .toc a{
+      text-decoration:none;
+      border:1px solid var(--border);
+      background: color-mix(in oklab, var(--accent) 6%, var(--bg-card));
+      padding:8px 12px; border-radius: 12px;
+      color: var(--text);
+      font-weight:700; font-size:13px;
+      opacity:.95;
+    }
+    .toc a:hover{ background: color-mix(in oklab, var(--accent) 10%, var(--bg-card)); }
+
+    /* ======= Cards / Sections ======= */
+    .card{
+      margin-top: 18px;
+      background:
+        linear-gradient(180deg, color-mix(in oklab, var(--accent) 4%, var(--bg-card)), var(--bg-card));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .card:target{
+      outline: 2px solid color-mix(in oklab, var(--accent) 60%, transparent);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 22%, transparent), var(--shadow);
+      scroll-margin-top: 16px;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .h2-badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border-radius:10px;
+      font-size:13px; font-weight:900;
+      background: color-mix(in oklab, var(--accent) 18%, transparent);
+      border:1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+      color: color-mix(in oklab, var(--accent) 90%, white);
+      flex:0 0 auto;
+    }
+    .h2-text{
+      flex:1 1 auto; min-width:0;
+    }
+
+    .anchor{
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:6px;
+      font-weight:800; font-size:12px;
+      color: var(--accent);
+      opacity:.9;
+    }
+    .anchor:hover{ text-decoration: underline; }
+
+    p{
+      margin: 10px 0 0;
+    }
+    ul{ margin: 10px 0 0 18px; padding: 0 0 0 6px; }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .info{
+      margin-top:12px; padding:12px 14px; border-radius:12px;
+      border:1px dashed color-mix(in oklab, var(--accent) 35%, var(--border));
+      background: color-mix(in oklab, var(--accent) 8%, transparent);
+      color: color-mix(in oklab, var(--accent) 92%, white);
+      font-weight:700; font-size:13px;
+    }
+
+    .footer{
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 0 2px;
+    }
+
+    @media (max-width: 480px){
+      .wrap{ margin-top: 28px; padding-bottom: 104px; }
+      h1{ font-size: 26px }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Terms of Service</h1>
-      <div class="meta">Last updated: September 3, 2025</div>
+  <main class="wrap">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <h1>Terms of Service – Calify</h1>
+          <p class="subtitle">Please read these terms carefully before using Calify.</p>
+          <div class="meta">
+            <span class="badge">Calify</span>
+            <span class="badge" id="updated-badge">Last updated: —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick section nav -->
+      <nav class="toc" aria-label="Sections">
+        <a href="#who-we-are">Who We Are</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#health">Health Notice</a>
+        <a href="#accounts">Accounts</a>
+        <a href="#billing">Billing</a>
+        <a href="#user-content">User Content</a>
+        <a href="#acceptable-use">Acceptable Use</a>
+        <a href="#ip">Intellectual Property</a>
+        <a href="#third-party">Third-Party</a>
+        <a href="#beta">Beta & Changes</a>
+        <a href="#warranty">Warranty</a>
+        <a href="#liability">Liability</a>
+        <a href="#indemnity">Indemnity</a>
+        <a href="#termination">Termination</a>
+        <a href="#law">Governing Law</a>
+        <a href="#changes">Changes to Terms</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <section class="card">
+    <!-- INTRO CARD -->
+    <section class="card" id="intro">
+      <h2>
+        <span class="h2-badge">0</span>
+        <span class="h2-text">Overview</span>
+        <a class="anchor" href="#intro" aria-label="Link to section">#</a>
+      </h2>
       <p>These Terms of Service (“<strong>Terms</strong>”) govern your access to and use of the Calify fitness mobile application and related services (the “<strong>App</strong>” or “<strong>Service</strong>”), provided by <strong>Calify</strong> (“<strong>we</strong>,” “<strong>us</strong>,” or “<strong>our</strong>”). By downloading, accessing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
     </section>
 
-    <h2>1. Who we are &amp; how to reach us</h2>
-    <p><strong>Provider:</strong> Calify<br>
-       <strong>Contact:</strong> <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a><br>
-       <strong>Privacy Policy:</strong> <a href="https://longdevsapps-web.github.io/privacy-policy/">https://longdevsapps-web.github.io/privacy-policy/</a></p>
+    <!-- SECTIONS -->
+    <section class="card" id="who-we-are">
+      <h2>
+        <span class="h2-badge">1</span>
+        <span class="h2-text">Who we are & how to reach us</span>
+        <a class="anchor" href="#who-we-are" aria-label="Link to section">#</a>
+      </h2>
+      <p><strong>Provider:</strong> Calify<br>
+         <strong>Contact:</strong> <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a><br>
+         <strong>Privacy Policy:</strong> <a href="https://longdevsapps-web.github.io/privacy-policy/">https://longdevsapps-web.github.io/privacy-policy/</a></p>
+    </section>
 
-    <h2>2. Eligibility</h2>
-    <p>You must be at least 13 years old (or the minimum age of digital consent in your country) to use the App. If you are under the age of majority, you may use the App only with the involvement and consent of a parent or legal guardian.</p>
+    <section class="card" id="eligibility">
+      <h2>
+        <span class="h2-badge">2</span>
+        <span class="h2-text">Eligibility</span>
+        <a class="anchor" href="#eligibility" aria-label="Link to section">#</a>
+      </h2>
+      <p>You must be at least 13 years old (or the minimum age of digital consent in your country) to use the App. If you are under the age of majority, you may use the App only with the involvement and consent of a parent or legal guardian.</p>
+    </section>
 
-    <h2>3. Health &amp; safety notice (no medical advice)</h2>
-    <p>The App provides logging, tracking, and educational features for general fitness purposes only. <strong>It does not provide medical advice, diagnosis, or treatment.</strong> Always consult a qualified healthcare professional before starting or changing any exercise, nutrition, or wellness program. Use at your own risk. Do not use the App for emergencies.</p>
+    <section class="card" id="health">
+      <h2>
+        <span class="h2-badge">3</span>
+        <span class="h2-text">Health & safety notice (no medical advice)</span>
+        <a class="anchor" href="#health" aria-label="Link to section">#</a>
+      </h2>
+      <p>The App provides logging, tracking, and educational features for general fitness purposes only. <strong>It does not provide medical advice, diagnosis, or treatment.</strong> Always consult a qualified healthcare professional before starting or changing any exercise, nutrition, or wellness program. Use at your own risk. Do not use the App for emergencies.</p>
+    </section>
 
-    <h2>4. Accounts &amp; security</h2>
-    <p>You are responsible for providing accurate information, maintaining the confidentiality of your login credentials, and all activities under your account. We may suspend or terminate your account if you violate these Terms or applicable laws.</p>
+    <section class="card" id="accounts">
+      <h2>
+        <span class="h2-badge">4</span>
+        <span class="h2-text">Accounts & security</span>
+        <a class="anchor" href="#accounts" aria-label="Link to section">#</a>
+      </h2>
+      <p>You are responsible for providing accurate information, maintaining the confidentiality of your login credentials, and all activities under your account. We may suspend or terminate your account if you violate these Terms or applicable laws.</p>
+    </section>
 
-    <h2>5. Subscriptions, in-app purchases &amp; billing</h2>
-    <p>If paid features are offered (e.g., subscriptions, one-time purchases), billing and refunds are handled by the platform you purchased through (Apple App Store or Google Play). Review the platform’s billing terms and refund policies. We may change pricing or features prospectively; changes take effect in the next billing period or as communicated by the platform.</p>
+    <section class="card" id="billing">
+      <h2>
+        <span class="h2-badge">5</span>
+        <span class="h2-text">Subscriptions, in-app purchases & billing</span>
+        <a class="anchor" href="#billing" aria-label="Link to section">#</a>
+      </h2>
+      <p>If paid features are offered (e.g., subscriptions, one-time purchases), billing and refunds are handled by the platform you purchased through (Apple App Store or Google Play). Review the platform’s billing terms and refund policies. We may change pricing or features prospectively; changes take effect in the next billing period or as communicated by the platform.</p>
+    </section>
 
-    <h2>6. User content &amp; data</h2>
-    <p>You may input content such as workouts, sets, weights, photos, notes, and preferences (“<strong>User Content</strong>”). You retain ownership of your User Content. By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to host, store, process, and display it solely to operate and improve the App.</p>
-    <p>You are responsible for your User Content and warrant that it does not infringe others’ rights, violate law, or contain harmful content.</p>
-    <p><strong>Data export &amp; deletion.</strong><br>
-      • You can export local data via the App’s Settings (if available).<br>
-      • You can request deletion of your account and associated cloud data via the App (if available) or by emailing <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a>. We may need to verify your identity.</p>
-    <p>For details on what we collect and why, see our <a href="https://longdevsapps-web.github.io/privacy-policy/">Privacy Policy</a>.</p>
+    <section class="card" id="user-content">
+      <h2>
+        <span class="h2-badge">6</span>
+        <span class="h2-text">User content & data</span>
+        <a class="anchor" href="#user-content" aria-label="Link to section">#</a>
+      </h2>
+      <p>You may input content such as workouts, sets, weights, photos, notes, and preferences (“<strong>User Content</strong>”). You retain ownership of your User Content. By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to host, store, process, and display it solely to operate and improve the App.</p>
+      <p>You are responsible for your User Content and warrant that it does not infringe others’ rights, violate law, or contain harmful content.</p>
+      <p><strong>Data export & deletion.</strong><br>
+        • You can export local data via the App’s Settings (if available).<br>
+        • You can request deletion of your account and associated cloud data via the App (if available) or by emailing <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a>. We may need to verify your identity.</p>
+      <p>For details on what we collect and why, see our <a href="https://longdevsapps-web.github.io/privacy-policy/">Privacy Policy</a>.</p>
+    </section>
 
-    <h2>7. Acceptable use</h2>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Reverse engineer, decompile, or attempt to extract source code except where permitted by law.</li>
-      <li>Circumvent security, access accounts or data without authorization, or interfere with the App’s operation.</li>
-      <li>Post or transmit unlawful, harmful, abusive, harassing, defamatory, or infringing content.</li>
-      <li>Use automated means (bots, scrapers) except through documented APIs (if any).</li>
-      <li>Misrepresent your identity or affiliation.</li>
-    </ul>
+    <section class="card" id="acceptable-use">
+      <h2>
+        <span class="h2-badge">7</span>
+        <span class="h2-text">Acceptable use</span>
+        <a class="anchor" href="#acceptable-use" aria-label="Link to section">#</a>
+      </h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Reverse engineer, decompile, or attempt to extract source code except where permitted by law.</li>
+        <li>Circumvent security, access accounts or data without authorization, or interfere with the App’s operation.</li>
+        <li>Post or transmit unlawful, harmful, abusive, harassing, defamatory, or infringing content.</li>
+        <li>Use automated means (bots, scrapers) except through documented APIs (if any).</li>
+        <li>Misrepresent your identity or affiliation.</li>
+      </ul>
+    </section>
 
-    <h2>8. Intellectual property</h2>
-    <p>Except for your User Content, the App (software, design, logos, and other content) is owned by or licensed to us and protected by intellectual property laws. Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial use.</p>
+    <section class="card" id="ip">
+      <h2>
+        <span class="h2-badge">8</span>
+        <span class="h2-text">Intellectual property</span>
+        <a class="anchor" href="#ip" aria-label="Link to section">#</a>
+      </h2>
+      <p>Except for your User Content, the App (software, design, logos, and other content) is owned by or licensed to us and protected by intellectual property laws. Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial use.</p>
+    </section>
 
-    <h2>9. Third-party services &amp; links</h2>
-    <p>The App may integrate or link to third-party services. We do not control and are not responsible for third-party services. Your use of them may be subject to their terms and privacy policies.</p>
+    <section class="card" id="third-party">
+      <h2>
+        <span class="h2-badge">9</span>
+        <span class="h2-text">Third-party services & links</span>
+        <a class="anchor" href="#third-party" aria-label="Link to section">#</a>
+      </h2>
+      <p>The App may integrate or link to third-party services. We do not control and are not responsible for third-party services. Your use of them may be subject to their terms and privacy policies.</p>
+    </section>
 
-    <h2>10. Beta features &amp; changes to the service</h2>
-    <p>We may release features labeled as alpha, beta, or early access. Such features may be unstable or change. We may modify, suspend, or discontinue the App or any part of it at any time.</p>
+    <section class="card" id="beta">
+      <h2>
+        <span class="h2-badge">10</span>
+        <span class="h2-text">Beta features & changes to the service</span>
+        <a class="anchor" href="#beta" aria-label="Link to section">#</a>
+      </h2>
+      <p>We may release features labeled as alpha, beta, or early access. Such features may be unstable or change. We may modify, suspend, or discontinue the App or any part of it at any time.</p>
+    </section>
 
-    <h2>11. Disclaimer of warranties</h2>
-    <p><strong>To the maximum extent permitted by law, the App is provided “as is” and “as available.”</strong> We disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, accuracy, availability, and non-infringement. We do not warrant that the App will be uninterrupted, secure, or error-free.</p>
+    <section class="card" id="warranty">
+      <h2>
+        <span class="h2-badge">11</span>
+        <span class="h2-text">Disclaimer of warranties</span>
+        <a class="anchor" href="#warranty" aria-label="Link to section">#</a>
+      </h2>
+      <p><strong>To the maximum extent permitted by law, the App is provided “as is” and “as available.”</strong> We disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, accuracy, availability, and non-infringement. We do not warrant that the App will be uninterrupted, secure, or error-free.</p>
+    </section>
 
-    <h2>12. Limitation of liability</h2>
-    <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, revenue, or business, arising out of or in connection with your use of the App, even if advised of the possibility. Our total liability for any claim will not exceed the greater of (a) the amount you paid to us for the App in the 12 months before the claim, or (b) EUR 20. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law.</p>
+    <section class="card" id="liability">
+      <h2>
+        <span class="h2-badge">12</span>
+        <span class="h2-text">Limitation of liability</span>
+        <a class="anchor" href="#liability" aria-label="Link to section">#</a>
+      </h2>
+      <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, revenue, or business, arising out of or in connection with your use of the App, even if advised of the possibility. Our total liability for any claim will not exceed the greater of (a) the amount you paid to us for the App in the 12 months before the claim, or (b) EUR 20. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law.</p>
+    </section>
 
-    <h2>13. Indemnification</h2>
-    <p>You agree to indemnify and hold harmless Calify and our affiliates, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising from your use of the App, your User Content, or your violation of these Terms or law.</p>
+    <section class="card" id="indemnity">
+      <h2>
+        <span class="h2-badge">13</span>
+        <span class="h2-text">Indemnification</span>
+        <a class="anchor" href="#indemnity" aria-label="Link to section">#</a>
+      </h2>
+      <p>You agree to indemnify and hold harmless Calify and our affiliates, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising from your use of the App, your User Content, or your violation of these Terms or law.</p>
+    </section>
 
-    <h2>14. Termination</h2>
-    <p>You may stop using the App at any time and may delete your account as described above. We may suspend or terminate your access immediately if you violate these Terms or we are required to by law. Upon termination, licenses end and you must cease all use. Sections that by their nature should survive termination will survive.</p>
+    <section class="card" id="termination">
+      <h2>
+        <span class="h2-badge">14</span>
+        <span class="h2-text">Termination</span>
+        <a class="anchor" href="#termination" aria-label="Link to section">#</a>
+      </h2>
+      <p>You may stop using the App at any time and may delete your account as described above. We may suspend or terminate your access immediately if you violate these Terms or we are required to by law. Upon termination, licenses end and you must cease all use. Sections that by their nature should survive termination will survive.</p>
+    </section>
 
-    <h2>15. Governing law &amp; venue</h2>
-    <p>These Terms are governed by the laws of <strong>Germany</strong>, without regard to conflict-of-law rules. If you are a consumer residing in the EU/EEA/UK, you may also enjoy mandatory protections of your local consumer laws. The exclusive place of jurisdiction is our registered place of business, except where consumer law provides otherwise.</p>
+    <section class="card" id="law">
+      <h2>
+        <span class="h2-badge">15</span>
+        <span class="h2-text">Governing law & venue</span>
+        <a class="anchor" href="#law" aria-label="Link to section">#</a>
+      </h2>
+      <p>These Terms are governed by the laws of <strong>Germany</strong>, without regard to conflict-of-law rules. If you are a consumer residing in the EU/EEA/UK, you may also enjoy mandatory protections of your local consumer laws. The exclusive place of jurisdiction is our registered place of business, except where consumer law provides otherwise.</p>
+    </section>
 
-    <h2>16. Changes to these Terms</h2>
-    <p>We may update these Terms from time to time. When we do, we will change the “Last updated” date above and, where required, provide additional notice (e.g., in-app). Your continued use of the App after changes take effect constitutes acceptance.</p>
+    <section class="card" id="changes">
+      <h2>
+        <span class="h2-badge">16</span>
+        <span class="h2-text">Changes to these Terms</span>
+        <a class="anchor" href="#changes" aria-label="Link to section">#</a>
+      </h2>
+      <p>We may update these Terms from time to time. When we do, we will change the “Last updated” date on this page and, where required, provide additional notice (e.g., in-app). Your continued use of the App after changes take effect constitutes acceptance.</p>
+    </section>
 
-    <h2>17. Contact</h2>
-    <p>Questions about these Terms or your account? Email us at <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a>.</p>
+    <section class="card" id="contact">
+      <h2>
+        <span class="h2-badge">17</span>
+        <span class="h2-text">Contact</span>
+        <a class="anchor" href="#contact" aria-label="Link to section">#</a>
+      </h2>
+      <p>Questions about these Terms or your account? Email us at <a href="mailto:long.devs.apps@gmail.com">long.devs.apps@gmail.com</a>.</p>
+      <p class="info">This page is provided for convenience and does not constitute legal advice.</p>
+    </section>
 
-    <footer>
-      <p class="note">This page is provided for convenience and does not constitute legal advice.</p>
-    </footer>
-  </div>
+    <!-- FOOTER -->
+    <div class="footer">
+      <span id="updated">Last updated: </span>
+      <span class="badge">Fair&nbsp;Use</span>
+    </div>
+  </main>
+
+  <script>
+    // Mirror Privacy Policy behavior: auto "Last updated" using build time
+    const d = new Date(document.lastModified);
+    const fmt = d.toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('updated').textContent = `Last updated: ${fmt}`;
+    document.getElementById('updated-badge').textContent = `Last updated: ${fmt}`;
+  </script>
 </body>
 </html>
